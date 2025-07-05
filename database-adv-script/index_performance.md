@@ -10,4 +10,5 @@
 - Fetch bookings by user reduced to ~30ms.
 - Fetch reviews by property reduced to ~22ms.
 
-Used EXPLAIN to compare execution plans. Index scan replaced sequential scan.
+Used EXPLAIN ANALYZE to compare execution plans.
+Index scan replaced sequential scan in both queries.
