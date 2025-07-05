@@ -7,9 +7,10 @@ SELECT b.id AS booking_id, b.start_date, b.end_date,
 FROM bookings b
 JOIN users u ON b.user_id = u.id
 JOIN properties p ON b.property_id = p.id
-JOIN payments pay ON b.id = pay.booking_id;
+JOIN payments pay ON b.id = pay.booking_id
+WHERE u.id = 1 AND pay.amount > 100;
 
--- Optimized query: select only necessary columns to reduce load
+-- Optimized query: select only necessary columns with same filter
 EXPLAIN ANALYZE
 SELECT b.id AS booking_id, b.start_date, b.end_date,
        u.name AS user_name,
@@ -18,4 +19,5 @@ SELECT b.id AS booking_id, b.start_date, b.end_date,
 FROM bookings b
 JOIN users u ON b.user_id = u.id
 JOIN properties p ON b.property_id = p.id
-JOIN payments pay ON b.id = pay.booking_id;
+JOIN payments pay ON b.id = pay.booking_id
+WHERE u.id = 1 AND pay.amount > 100;
